@@ -71,8 +71,8 @@ class RateLimiter {
 
                 // Max limit reached
                 if (current > max) {
-                    const err = new Error(this._message);
                     err.status = this._status;
+                    res.status(429).json({ message: "You are being rate limited", status: 429 })
                     return next(err);
                 }
 
